@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* {
+    padding: auto;
+    margin: auto;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif !important;
+}
+
+body {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top:-20px;
+    margin-bottom: 50px;
+}
+#container-group{
+    width: 100%;
+}
+#electrontitle {
+    color: white;
+    margin-left: 1rem;
+    margin-top: 12px;
+    bottom: 12px;
+}
+
+.nav-tabs {
+    width: 100%;
+    height: 100%;
+}
+
+#btn_limpiar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#name {
+    display: inline-flex;
+    float: right;
+    margin-top: -40px;
+    margin-right: 5rem;
+}
+
+.nav-item {
+    text-align: center;
+    width: 50%;
+}
+
+.nav-item1 {
+    text-align: center;
+    width: 100%;
+}
+
+.tab {
+    color: white;
+}
+
+.tab:hover {
+    color: white;
+    border: 0;
+}
+
+.ntab {
+    color: white;
+    border: 1 solid white;
+}
+
+.ntab:hover {
+    color: black;
+    background-color: white;
+}
+
+.lead {
+    margin-left: 22px;
+}
+
+.container {
+    margin-top: 130px;
+}
+#cols {
+    width: 100%;
+    overflow: auto;
+}
+
+#cols1 {
+    float: left;
+    width: 70%;
+}
+
+#cols2 {
+    position: fixed;
+    float: right;
+    margin-top:65px;
+    
+    right: -29%;
+    top: -28px;
+    margin-left: -20px;
+    width: 60%;
+}
+h3 {
+    cursor: pointer;
+}
+
+#operacion,
+#cols2 {
+    background-color: rgb(41, 37, 37);
+    opacity: 0.95;
+    color: white;
+    height: 100%;
+}
+
+#operacion {
+    margin-left: 10px;
+}
+#opera_lbl{
+    background-color:black;
+    padding:20px;
+    margin-left:-10px;
+    position: fixed;
+}
+#c-sha {
+    width: 80%;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+}
+.card-body {
+    margin-left: 0px;
+}
+
+.form-control {
+    opacity: 0.95;
+}
+
+#calcular_inte,
+#limpiar_inte {
+    padding: 10px;
+    width: 40%;
+}
+
+#limpiar_inte {
+    top: 20px;
+}
+
+input[type="number"],
+input[type="text"] {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.05 rem;
+    width: 100%;
+    line-height: 1.5;
+    padding: 0.75rem 1.5 rem;
+    border-bottom: 1px inherit black;
+}
+input[type="search"]{
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+span,
+.rounded-pill {
+    border-radius: 12px !important;
+}
+
+#txtresulta {
+    margin-top: 12px;
+}
+
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 2px;
+    margin-left: -10px;
+}
+
+#a {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#container {
+    margin-top: 60px;
+}
+header {
+    background: #212121;
+    border-right: 1px solid #e5e5e5;
+    color: white;
+    width: 105%;
+    position: fixed;
+    top: 0;
+    margin-left: -10px;
+    z-index: 999;
+}
+
+#submenu {
+    margin-left: -65px;
+}
+
+.caja1 {
+    background: #212121;
+    color: white;
+}
+
+.caja1:hover {
+    background: #212121;
+    color: white;
+}
+
+.caja2:hover {
+    background: white;
+    color: black;
+}
+
+.title-header {
+    margin-left: 65px;
+    top: 5px;
+    color: white;
+    position: relative;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+#datos_hf {
+    float: right;
+    margin-right: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+#img_usuario {
+    float: right;
+    right: 0;
+    margin-right: 2px;
+    flex-wrap: wrap;
+}
+
+#user-default:hover {
+    cursor: pointer;
+}
+
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+#message_welcome {
+    margin-top: -20px;
+}
+
+.value {
+    padding: 13.5px;
+    margin-top: 0px;
+}
+
+#search_bar {
+    width: 50%;
+    margin-top: 10px;
+    font-family: Product Sans;
+    font-weight: bold;
+    font-size: 0.8 rem;
+}
+
+.btn_search {
+    margin-top: 10px;
+    font-family: Product Sans;
+    font-weight: bold;
+    font-size: 0.8 rem;
+}
+
+#t2 {
+    margin-left: 10px;
+}
+
+button {
+    padding: 10px;
+    width: 60%;
+}
+
+#last-tr {
+    margin-top: 60px;
+}
+
+table {
+    width: 100%;
+}
+td{
+    text-align: center;
+}
+#agregar{
+    margin-top: 10px;
+}
+/*//////////////////////////////// */
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
+.fa-2x {
+    font-size: 2em;
+}
+
+.fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+
+.main-menu:hover,
+nav.main-menu.expanded {
+    width: 250px;
+    overflow: visible;
+}
+
+.main-menu {
+    background: #212121;
+    border-right: 1px solid #e5e5e5;
+    position: fixed;
+    top: 100px;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    width: 60px;
+    overflow: hidden;
+    -webkit-transition: width .05s linear;
+    transition: width .05s linear;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    z-index: 1000;
+}
+
+.main-menu>ul {
+    margin: 7px 0;
+}
+
+.main-menu li {
+    position: relative;
+    display: block;
+    width: 250px;
+}
+
+.main-menu li>a {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #999;
+    font-family: arial;
+    font-size: 14px;
+    text-decoration: none;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    -webkit-transition: all .1s linear;
+    transition: all .1s linear;
+
+}
+.main-menu .nav-icon {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+.main-menu .nav-text {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    width: 190px;
+}
+
+.main-menu>ul.logout {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.no-touch .scrollable.hover {
+    overflow-y: hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+    overflow-y: auto;
+    overflow: visible;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+nav {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+nav ul,
+nav li {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu li:hover>a,
+nav.main-menu li.active>a,
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover,
+.dropdown-menu>.active>a:focus,
+.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
+.dashboard-page nav.dashboard-menu ul li.active a {
+    color: #fff;
+    background-color: #5fa2db;
+}
+
+.area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}

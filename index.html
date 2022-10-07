@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="/modules/app.js"></script>
+    <script type="module" src ="/modules/inventario.js"></script>
+</head>
+<body>
+    <header class="head1">
+        <h1>Inventario</h1>
+    </header>
+    <div id="cols">
+        <div id="cols1">
+            <div id="container">
+                <h3 id="agregarh3">Agregar</h3>
+                <table id="crud_agregar" style="display:none;">
+                    <tr>
+                        <td>Código</td>
+                        <td>Nombre</td>
+                        <td>Cantidad</td>
+                        <td>Costo</td>
+                        <td>Posición</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="codigon" id="codigo" value="1"></td>
+                        <td><input type="text" name="nombren" id="nombre"></td>
+                        <td><input type="number" name="cantidadn" id="cantidad"></td>
+                        <td><input type="number" name="coston" id="costo"></td>
+                        <td><input type="text" name="posc" id="posicion"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <button type="reset" id="btnAgregar">Agregar</button>
+                        </td>
+                        <td colspan="4">
+                            <button type="reset" id="btnAgregarPosicion">Agregar En la Posición</button>
+                        </td>
+                        </tr>
+                </table>
+            </div>
+            <hr>
+            <div id="container1">
+                <h3 id="buscarh3">Búsqueda</h3>
+                <div id="crud_buscar"  style="display:none;">
+                    <table id="tabla_buscar">
+                        <tr>
+                            <td>Código:</td>
+                        </tr>
+                        <tr id="t2">
+                            <td rowspan="2"><input type="search" name="buscar1" id="buscar1"></td>
+                            <td><button id="btnBuscar">Buscar</button></td>
+                        </tr>
+                        <tr>
+                            <td><button id="btnEliminar">Eliminar</button></td>
+                        </tr>
+                    </table>
+                    <div id="search">
+                        <h3 style="display:none;" id="title_search">Resultado de la búsqueda</h3>
+                        <table id="res"></table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="container2">
+                <h3>Listar</h3>
+                <div id="listardiv">
+                    <table id="btnslistar">
+                        <tr width="100%">
+                            <td width="33%"><button id="btnListar">Listar</button></td>
+                            <td width="33%"><button id="btnListarInverso">Listar Inverso</button></td>
+                            <td width="33%"><button id="btnOrdenar">Ordenar</button></td>
+                        </tr>
+                    </table>
+                    <table id="listar">
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="cols2">
+            <div id="operacion" style="width:50%;overflow:scroll;position:sticky">
+                <label id="opera_lbl">Operación:</label>
+                <br><br><hr>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
