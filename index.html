@@ -17,35 +17,30 @@
         <div id="cols1">
             <div id="container">
                 <h3 id="agregarh3">Agregar</h3>
-                <table id="crud_agregar" style="display:none;">
+                <table id="crud_agregar">
                     <tr>
                         <td>Código</td>
                         <td>Nombre</td>
                         <td>Cantidad</td>
                         <td>Costo</td>
-                        <td>Posición</td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="codigon" id="codigo" value="1"></td>
+                        <td><input type="text" name="codigon" id="codigo" value="1" title=""></td>
                         <td><input type="text" name="nombren" id="nombre"></td>
                         <td><input type="number" name="cantidadn" id="cantidad"></td>
                         <td><input type="number" name="coston" id="costo"></td>
-                        <td><input type="text" name="posc" id="posicion"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
                             <button type="reset" id="btnAgregar">Agregar</button>
                         </td>
-                        <td colspan="4">
-                            <button type="reset" id="btnAgregarPosicion">Agregar En la Posición</button>
-                        </td>
-                        </tr>
+                    </tr>
                 </table>
             </div>
             <hr>
             <div id="container1">
                 <h3 id="buscarh3">Búsqueda</h3>
-                <div id="crud_buscar"  style="display:none;">
+                <div id="crud_buscar">
                     <table id="tabla_buscar">
                         <tr>
                             <td>Código:</td>
@@ -66,16 +61,12 @@
             </div>
             <hr>
             <div id="container2">
-                <h3>Listar</h3>
                 <div id="listardiv">
-                    <table id="btnslistar">
-                        <tr width="100%">
-                            <td width="33%"><button id="btnListar">Listar</button></td>
-                            <td width="33%"><button id="btnListarInverso">Listar Inverso</button></td>
-                            <td width="33%"><button id="btnOrdenar">Ordenar</button></td>
-                        </tr>
-                    </table>
+                    <h3>Listado</h3>
                     <table id="listar">
+                    </table>
+                    <h3>Listado Inverso</h3>
+                    <table id="listarInverso">
                     </table>
                 </div>
             </div>
