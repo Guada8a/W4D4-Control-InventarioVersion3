@@ -24,11 +24,6 @@ body {
     bottom: 12px;
 }
 
-.nav-tabs {
-    width: 100%;
-    height: 100%;
-}
-
 #btn_limpiar {
     display: flex;
     align-items: center;
@@ -42,38 +37,6 @@ body {
     margin-right: 5rem;
 }
 
-.nav-item {
-    text-align: center;
-    width: 50%;
-}
-
-.nav-item1 {
-    text-align: center;
-    width: 100%;
-}
-
-.tab {
-    color: white;
-}
-
-.tab:hover {
-    color: white;
-    border: 0;
-}
-
-.ntab {
-    color: white;
-    border: 1 solid white;
-}
-
-.ntab:hover {
-    color: black;
-    background-color: white;
-}
-
-.lead {
-    margin-left: 22px;
-}
 
 .container {
     margin-top: 130px;
@@ -129,23 +92,6 @@ footer {
     color: white;
     text-align: center;
 }
-.card-body {
-    margin-left: 0px;
-}
-
-.form-control {
-    opacity: 0.95;
-}
-
-#calcular_inte,
-#limpiar_inte {
-    padding: 10px;
-    width: 40%;
-}
-
-#limpiar_inte {
-    top: 20px;
-}
 
 input[type="number"],
 input[type="text"] {
@@ -175,11 +121,6 @@ span,
 .rounded-pill {
     border-radius: 12px !important;
 }
-
-#txtresulta {
-    margin-top: 12px;
-}
-
 
 hr {
     display: block;
@@ -214,21 +155,6 @@ header {
     margin-left: -65px;
 }
 
-.caja1 {
-    background: #212121;
-    color: white;
-}
-
-.caja1:hover {
-    background: #212121;
-    color: white;
-}
-
-.caja2:hover {
-    background: white;
-    color: black;
-}
-
 .title-header {
     margin-left: 65px;
     top: 5px;
@@ -249,14 +175,6 @@ header {
     flex-wrap: wrap;
     margin-top: 12px;
 }
-
-#img_usuario {
-    float: right;
-    right: 0;
-    margin-right: 2px;
-    flex-wrap: wrap;
-}
-
 #user-default:hover {
     cursor: pointer;
 }

@@ -9,8 +9,8 @@ export default class Inventario{
         let producto = false;
         let inicio = 0;
         let fin = this.productos.length - 1;
-        let mitad = Math.floor((inicio + fin) / 2);
         while (inicio <= fin) {
+            let mitad = Math.floor((inicio + fin) / 2);
             if (Number(this.productos[mitad].codigo) === Number(codigo)) {
                 producto = this.productos[mitad];
                 break;
@@ -50,20 +50,14 @@ export default class Inventario{
     }
     listadoInverso() {
         let str = '<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead>';
-        let aux = 0;
-        for (let k = 0; k < this.productos.length / 2; k++){
-            aux = this.productos[k];
-            this.productos[k] = this.productos[this.productos.length - 1 - k];
-            this.productos[this.productos.length - 1 - k] = aux;
-        }
         if (this.productos.length != 0) {
-            for (let i = 0; i <= this.productos.length-1; i++){
+            for (let i = this.productos.length - 1; i >= 0; i--) {
                 str += `<tr><td>${this.productos[i].codigo} </td> <td>${this.productos[i].nombre} </td><td> ${this.productos[i].cantidad} </td><td>${this.productos[i].costo}</td><td>${this.productos[i].total}</td></tr>`;
             }
             return str;
         } else {
             console.log("No hay productos en el inventario");
-            return str = "";
+            return str = '';
         }
     }
     ordenarCodigo() {
