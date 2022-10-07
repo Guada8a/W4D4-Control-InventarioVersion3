@@ -11,7 +11,6 @@ let codigo = document.getElementById("codigo");
 let nombre = document.getElementById("nombre");
 let costo = document.getElementById("costo");
 let cantidad = document.getElementById("cantidad");
-
 ///EVENTOS
 btnAgregar.addEventListener("click", () => {
     if (codigo.value == '' || cantidad.value == '' || costo.value == '' || nombre.value == '') {
@@ -21,7 +20,7 @@ btnAgregar.addEventListener("click", () => {
         nombre.style.border = "red solid 2px";
     } else {
         let verifica = inventario.buscar(codigo.value);
-        if (verifica == false) {
+        if (verifica == false || verifica== null) {
             let producto = new Producto(codigo.value, nombre.value, cantidad.value, costo.value);
             inventario.agregar(producto);
             inventario.ordenarCodigo();
@@ -52,16 +51,21 @@ btnBuscar.addEventListener("click", () => {
     let codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");
     let producto = inventario.buscar(codigo);
-
-    if (producto != null) {
-        document.getElementById('title_search').style.display = "block";
-        divRes.innerHTML = `<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></thead></tr><tr><td>${producto.codigo} </td> <td>${producto.nombre} </td><td> ${producto.cantidad} </td><td>${producto.costo}</td><td>${producto.total}</td></tr>`;
-        operacion.innerHTML += `Se buscó un producto con el código <b>${codigo}</b> del inventario<hr>`;
-        operacion.scrollTop = operacion.scrollHeight;
-    } else {
+    if (producto == null) {
         document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Resultado de la búsqueda</h3>";
         document.getElementById('title_search').style.display = "block";
-        divRes.innerHTML = "No se encontró el producto";
+        divRes.innerHTML = "No hay productos en el inventario";
+    } else {
+        if (producto != false) {
+            document.getElementById('title_search').style.display = "block";
+            divRes.innerHTML = `<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></thead></tr><tr><td>${producto.codigo} </td> <td>${producto.nombre} </td><td> ${producto.cantidad} </td><td>${producto.costo}</td><td>${producto.total}</td></tr>`;
+            operacion.innerHTML += `Se buscó un producto con el código <b>${codigo}</b> del inventario<hr>`;
+            operacion.scrollTop = operacion.scrollHeight;
+        } else {
+            document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Resultado de la búsqueda</h3>";
+            document.getElementById('title_search').style.display = "block";
+            divRes.innerHTML = "No se encontró el producto";
+        }
     }
 });
 btnEliminar.addEventListener("click", () => {

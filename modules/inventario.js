@@ -9,18 +9,22 @@ export default class Inventario{
         let producto = false;
         let inicio = 0;
         let fin = this.productos.length - 1;
-        while (inicio <= fin) {
-            let mitad = Math.floor((inicio + fin) / 2);
-            if (Number(this.productos[mitad].codigo) === Number(codigo)) {
-                producto = this.productos[mitad];
-                break;
-            } else if (Number(this.productos[mitad].codigo) < Number(codigo)) {
-                inicio = mitad + 1;
-            } else
-                fin = mitad - 1;
-            mitad = Math.floor((inicio + fin) / 2);
+        if (this.productos.length != 0) {
+            while (inicio <= fin) {
+                let mitad = Math.floor((inicio + fin) / 2);
+                if (Number(this.productos[mitad].codigo) === Number(codigo)) {
+                    producto = this.productos[mitad];
+                    break;
+                } else if (Number(this.productos[mitad].codigo) < Number(codigo)) {
+                    inicio = mitad + 1;
+                } else
+                    fin = mitad - 1;
+                mitad = Math.floor((inicio + fin) / 2);
+            }
+            return producto;
+        } else {
+            return null;
         }
-        return producto;
     }
     eliminar(codigo) {
         let product = null;
