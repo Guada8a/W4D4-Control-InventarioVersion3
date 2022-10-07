@@ -23,7 +23,7 @@ export default class Inventario{
         return producto;
     }
     eliminar(codigo) {
-        let product = false;
+        let product = null;
         for (let i = 0; i <= this.productos.length; i++) {
             if (this.productos[i])
                 if (codigo === this.productos[i].codigo) {
