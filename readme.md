@@ -1,26 +1,26 @@
-# Programa CRUD
+# App de Control de Inventario
 
-## ESTRUCTURAS DE DATOS
+## CONTROL DE INVENTARIO (ORDENADO POR CÓDIGO)
 ### ***CRUD Create Read Update Delete Sistemas de informacion (Altas, bajas, modificaciones y consultas)***
 
-Se va a controlar un inventario de productos, de los que se guarda el codigo, nombre, cantidad y costo, utilizando un vector.
+## Actividad
+Crear una interfaz en HTML para manipular un INVENTARIO de productos, para almacenar la información debemos usar un vector (no BDs, ni local storage).
+## Requerimientos
+**_Los elementos deberán agregarse y quedar almacenados de manera ascedente por el código que será numérico._**
 
-Podremos agregar, buscar por codigo, eliminar por codigo, insertar un producto en una posicion y recuperar el listado como texto.
-
-Crear una interfaz en HTML con cajas de texto para cada dato, al igual que botones para cada accion y un div al final donde se ira mostrando el detalle de las operaciones que se van realizando.
-
-
+En la interfaz (una sola pantalla) tener los inputs para cada dato, los botones para las tareas a realizar que se describen a continuación y un div para ir describiendo las actividades que se van realizando y sus resultados.
+## Características Principales
+### **Botones**
 ```
-NODO BASE   Estructura      Aplicacion
-producto    Inventario      Crear productos y guardar
-            TRANSPARENTE
-                agregar(producto)
-                eliminar(codigo)
-                    modificar(codigo)
-                listado()
-                listadoInverso()
-                buscar(codigo)
+- Agregar nuevo producto
+- Eliminar un producto por código, devolver el producto (si existe) o null (si no existe)
+- Buscar un producto por código
+- Recuperar todos los productos => listar
+- Recuperar todos los productos en orden inverso a cómo se ingresaron => Listar inverso
+
 ```                 
-***NOTA:
-No usar shift, unshift, splice, reverse, o algún otro metódo similar
-Solamente usar push y pop***
+### **NOTA:**
+
+- No se implementa el INSERTAR y el MODIFICAR
+- No usar swal.fire para las interfaces
+- Evitar el uso de alert y confirm

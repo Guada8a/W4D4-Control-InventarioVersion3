@@ -38,7 +38,7 @@ export default class Inventario{
         return product;
     }
     listado() {
-        let str = '<tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr >';
+        let str = '<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead>';
         if (this.productos.length != 0){
             for (let i = 0; i <= this.productos.length - 1; i++)
                 str += `<tr><td>${this.productos[i].codigo} </td> <td>${this.productos[i].nombre} </td><td> ${this.productos[i].cantidad} </td><td>${this.productos[i].costo}</td><td>${this.productos[i].total}</td></tr>`;
@@ -49,7 +49,7 @@ export default class Inventario{
         }
     }
     listadoInverso() {
-        let str = '<tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr >';
+        let str = '<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead>';
         let aux = 0;
         for (let k = 0; k < this.productos.length / 2; k++){
             aux = this.productos[k];

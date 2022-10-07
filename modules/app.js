@@ -27,7 +27,7 @@ btnAgregar.addEventListener("click", () => {
         document.getElementById('listar').innerHTML = resListar;
         document.getElementById('listarInverso').innerHTML = resListarInverso;
         
-        operacion.innerHTML += "Se agregó un elemento al inventario<hr>";
+        operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
         operacion.scrollTop = operacion.scrollHeight;
         codigo.style.border = "black solid 2px";
         nombre.value = "";
@@ -46,7 +46,7 @@ btnBuscar.addEventListener("click", () => {
     
     if (elemento != false) {
         document.getElementById('title_search').style.display = "block";
-        divRes.innerHTML = `<tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td></tr><tr><td>${elemento.codigo} </td> <td>${elemento.nombre} </td><td> ${elemento.cantidad} </td><td>${elemento.costo}</td></tr>`;
+        divRes.innerHTML = `<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead><tr><td>${elemento.codigo} </td> <td>${elemento.nombre} </td><td> ${elemento.cantidad} </td><td>${elemento.costo}</td><td>${elemento.total}</td></tr>`;
         operacion.innerHTML += "Se buscó un elemento en el inventario<hr>";
         operacion.scrollTop = operacion.scrollHeight;
     } else {
