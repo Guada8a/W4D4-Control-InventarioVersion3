@@ -23,7 +23,6 @@ btnAgregar.addEventListener("click", () => {
         if (verifica == false || verifica== null) {
             let producto = new Producto(codigo.value, nombre.value, cantidad.value, costo.value);
             inventario.agregar(producto);
-            inventario.ordenarCodigo();
             let resListar = inventario.listado();
             let resListarInverso = inventario.listadoInverso();
     
@@ -74,7 +73,6 @@ btnEliminar.addEventListener("click", () => {
 
     let divRes = document.getElementById("res");
     if (res) {
-        inventario.ordenarCodigo();
         let resListar = inventario.listado();
         let resListarInverso = inventario.listadoInverso();
 

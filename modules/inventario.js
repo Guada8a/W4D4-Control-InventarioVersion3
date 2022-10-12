@@ -1,29 +1,38 @@
 export default class Inventario{
     constructor() {
-        this.productos = new Array();
+        this.productos = null;
     }
     agregar(producto) {
-        this.productos.push(producto);
+        if (this.productos === null)
+            this.productos = producto;
+        else {
+            let aux = this.productos;
+            while (aux.next != null)
+                aux = aux.next;
+            aux.next = producto;
+        }
+        console.log(this.productos);
+    }
+    agregarInicio(producto) {
+        if (this.productos === null)
+            this.productos = producto;
+        else {
+            let aux = this.productos;
+            this.productos = producto;
+            producto.next = aux;
+        }
     }
     buscar(codigo) {
-        let producto = false;
-        let inicio = 0;
-        let fin = this.productos.length - 1;
-        if (this.productos.length != 0) {
-            while (inicio <= fin) {
-                let mitad = Math.floor((inicio + fin) / 2);
-                if (Number(this.productos[mitad].codigo) === Number(codigo)) {
-                    producto = this.productos[mitad];
-                    break;
-                } else if (Number(this.productos[mitad].codigo) < Number(codigo)) {
-                    inicio = mitad + 1;
-                } else
-                    fin = mitad - 1;
-                mitad = Math.floor((inicio + fin) / 2);
-            }
-            return producto;
-        } else {
-            return null;
+        let aux = this.productos;
+        if (aux) {
+            try {
+                while (aux.codigo != codigo) {
+                    aux = aux.next;
+                }
+                if (aux.codigo == codigo) {
+                    return aux;
+                }
+            } catch (error) { }
         }
     }
     eliminar(codigo) {
@@ -43,20 +52,11 @@ export default class Inventario{
     }
     listado() {
         let str = '<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead>';
-        if (this.productos.length != 0){
-            for (let i = 0; i <= this.productos.length - 1; i++)
-                str += `<tr><td>${this.productos[i].codigo} </td> <td>${this.productos[i].nombre} </td><td> ${this.productos[i].cantidad} </td><td>${this.productos[i].costo}</td><td>${this.productos[i].total}</td></tr>`;
-            return str;
-        } else {
-            console.log("No hay productos en el inventario");
-            return str = '';
-        }
-    }
-    listadoInverso() {
-        let str = '<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead>';
-        if (this.productos.length != 0) {
-            for (let i = this.productos.length - 1; i >= 0; i--) {
-                str += `<tr><td>${this.productos[i].codigo} </td> <td>${this.productos[i].nombre} </td><td> ${this.productos[i].cantidad} </td><td>${this.productos[i].costo}</td><td>${this.productos[i].total}</td></tr>`;
+        if (this.productos != null) {
+            let temp = this.productos;
+            while (temp != null) {
+                str += `<tr><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td></tr>`;
+                temp = temp.next;
             }
             return str;
         } else {
@@ -64,21 +64,19 @@ export default class Inventario{
             return str = '';
         }
     }
-    ordenarCodigo() {
-        if (this.productos.length != 0) {
-            let i, j, aux;
-            for (i = 0; i < this.productos.length - 1; i++)
-                for (j = 0; j < this.productos.length - i - 1; j++)
-                    if (parseInt(this.productos[j + 1].codigo) < parseInt(this.productos[j].codigo)) {
-                        aux = this.productos[j + 1];
-                        this.productos[j + 1] = this.productos[j];
-                        this.productos[j] = aux;
-                    }
-            
+    listadoInverso() {
+        let head = '<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead>';
+        let str = '';
+        if (this.productos != null) {
+            let temp = this.productos;
+            while (temp != null) {
+                str = `<tr><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td></tr>` + str;
+                temp = temp.next;
+            }
+            return head+str;
         } else {
-            console.log("No hay elementos en el inventario");
-            return null;
+            console.log("No hay productos en el inventario");
+            return str = '';
         }
     }
-    
 }
