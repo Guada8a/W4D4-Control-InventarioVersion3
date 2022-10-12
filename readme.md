@@ -1,26 +1,26 @@
 # App de Control de Inventario
 
-## CONTROL DE INVENTARIO (ORDENADO POR CÓDIGO)
-### ***CRUD Create Read Update Delete Sistemas de informacion (Altas, bajas, modificaciones y consultas)***
-
+## Inventario con Listas Enlazadas Simples
 ## Actividad
-Crear una interfaz en HTML para manipular un INVENTARIO de productos, para almacenar la información debemos usar un vector (no BDs, ni local storage).
+Utilizando el mismo ejercicio de Inventario con que se ha venido trabajando se va a implementar un cambio en la estructura de datos para utilizar listas enlazadas simples, se va a considerar un ejemplo similar al primer ejercicio en donde los productos se acomodaban de acuerdo al orden en que llegaran (no es necesario ordenar) y por lo tanto si existe la opción de insertar un nuevo producto en determinada posición.
 ## Requerimientos
-**_Los elementos deberán agregarse y quedar almacenados de manera ascedente por el código que será numérico._**
+**_Los metódos de inventario deben permitir:_**
 
-En la interfaz (una sola pantalla) tener los inputs para cada dato, los botones para las tareas a realizar que se describen a continuación y un div para ir describiendo las actividades que se van realizando y sus resultados.
-## Características Principales
-### **Botones**
-```
-- Agregar nuevo producto
-- Eliminar un producto por código, devolver el producto (si existe) o null (si no existe)
-- Buscar un producto por código
-- Recuperar todos los productos => listar
-- Recuperar todos los productos en orden inverso a cómo se ingresaron => Listar inverso
+- Agregar
+- Buscar
+- Eliminar
+- Insertar
+- Listar
+- Listar Inverso
 
-```                 
+**_Metódos Implicítos_**
+- Agregar en Posición
+- Agregar Primero
+
+## Restricciones
+- **_Ya no será necesario el uso del metódo de Ordenar al momento de añadir un nuevo producto_**
 ### **NOTA:**
-
+- Recordar que se deben de usar por lo menos las clases del Producto, la del Inventario y la de la Aplicación (interacción con el DOM HTML)
 - No se implementa el INSERTAR y el MODIFICAR
 - No usar swal.fire para las interfaces
 - Evitar el uso de alert y confirm
