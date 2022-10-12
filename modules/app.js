@@ -68,21 +68,30 @@ btnBuscar.addEventListener("click", () => {
     }
 });
 btnEliminar.addEventListener("click", () => {
-    let codigo = document.getElementById("buscar1").value;
-    let res = inventario.eliminar(codigo);
-
+    const codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");
-    if (res) {
-        let resListar = inventario.listado();
-        let resListarInverso = inventario.listadoInverso();
-
-        document.getElementById('listar').innerHTML = resListar;
-        document.getElementById('listarInverso').innerHTML = resListarInverso;
-        document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Eliminado</h3>";
-        document.getElementById('title_search').style.display = "block";
-        divRes.innerHTML = `El producto con código ${codigo} ha sido eliminado`;
-        operacion.innerHTML += `Se eliminó un producto con el código <b>${codigo}</b> del inventario<hr>`;
-        operacion.scrollTop = operacion.scrollHeight;
+    if (codigo != '') {
+        if (inventario.productos != null) {
+            let aux = new Producto(codigo, "", "", "");
+            let res = inventario.eliminar(aux.codigo);
+            let resListar = inventario.listado();
+            let resListarInverso = inventario.listadoInverso();
+            if (res!= false) {
+                document.getElementById('listar').innerHTML = resListar;
+                document.getElementById('listarInverso').innerHTML = resListarInverso;
+                document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Eliminado</h3>";
+                document.getElementById('title_search').style.display = "block";
+                divRes.innerHTML = `El producto con código ${codigo} ha sido eliminado`;
+                operacion.innerHTML += `Se eliminó un producto con el código <b>${codigo}</b> del inventario<hr>`;
+                operacion.scrollTop = operacion.scrollHeight;
+            } else {
+                document.getElementById('title_search').style.display = "block";
+                divRes.innerHTML = "Producto no encontrado";
+            }
+        } else {
+            document.getElementById('title_search').style.display = "block";
+            divRes.innerHTML = "No hay productos en el inventario";
+        }
     } else {
         document.getElementById('title_search').style.display = "block";
         divRes.innerHTML = "Ingrese un código válido";  

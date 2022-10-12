@@ -1,3 +1,4 @@
+import Producto from "./producto.js";
 export default class Inventario{
     constructor() {
         this.productos = null;
@@ -26,29 +27,49 @@ export default class Inventario{
         let aux = this.productos;
         if (aux) {
             try {
-                while (aux.codigo != codigo) {
+                while (aux.codigo != codigo)
                     aux = aux.next;
-                }
-                if (aux.codigo == codigo) {
+                if (aux.codigo == codigo)
                     return aux;
-                }
             } catch (error) { }
         }
     }
     eliminar(codigo) {
-        let product = null;
-        for (let i = 0; i <= this.productos.length; i++) {
-            if (this.productos[i])
-                if (codigo === this.productos[i].codigo) {
-                    for (let o = i; o < this.productos.length - 1; o++)
-                        this.productos[o] = this.productos[o + 1];
-
-                    this.productos[this.productos.length - 1] = 0;
-                    this.productos.pop();
-                    product = true;
-                }
+        let aux = this.productos;
+        if (this.productos.codigo == codigo) {
+            this.productos = this.productos.next;
+        } else {
+            while (aux.next.codigo != codigo) {
+                aux = aux.next;
+            }
+            if (aux.next.codigo === codigo) {
+                aux.next = aux.next.next;
+            }
         }
-        return product;
+    }
+    eliminarInicio() {
+        this.productos = this.productos.next;
+    }
+    cambiarPosicion(nuevo,pos) {
+        let aux = this.productos;
+        if (pos == 1) {
+            this.agregarInicio(nuevo);
+        } else {
+            let cont = 1;
+            while ((cont + 1) != pos) {
+                if (aux.next != null) {
+                    aux = aux.next;
+                    cont++;
+                } else {
+                    console.log("Esa posición no existe");
+                    break;
+                }
+            }
+            if ((cont + 1) === pos) {
+                nuevo.next = aux.next;
+                aux.next = nuevo;
+            }
+        }
     }
     listado() {
         let str = '<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></tr></thead>';
