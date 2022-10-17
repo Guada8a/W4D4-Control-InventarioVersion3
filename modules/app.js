@@ -33,17 +33,17 @@ btnAgregar.addEventListener("click", () => {
                 
                 operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
-                codigo.style.border = "black solid 2px";
-                cantidad.style.border = "black solid 2px";
-                costo.style.border = "black solid 2px";
-                nombre.style.border = "black solid 2px";
+                codigo.style.border = "white solid 2px";
+                cantidad.style.border = "white solid 2px";
+                costo.style.border = "white solid 2px";
+                nombre.style.border = "white solid 2px";
                 
                 codigo.value = '';
                 nombre.value = "";
                 costo.value = "";
                 cantidad.value = "";
             } else {
-                inventario.cambiarPosicion(producto, posicion.value);
+                inventario.cambiarPosicion(producto, posicion.value-1);
                 let resListar = inventario.listado();
                 let resListarInverso = inventario.listadoInverso();
         
@@ -52,10 +52,10 @@ btnAgregar.addEventListener("click", () => {
                 
                 operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario en la posición ${posicion.value}<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
-                codigo.style.border = "black solid 2px";
-                cantidad.style.border = "black solid 2px";
-                costo.style.border = "black solid 2px";
-                nombre.style.border = "black solid 2px";
+                codigo.style.border = "white solid 2px";
+                cantidad.style.border = "white solid 2px";
+                costo.style.border = "white solid 2px";
+                nombre.style.border = "white solid 2px";
                 
                 codigo.value = '';
                 nombre.value = "";
