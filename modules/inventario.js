@@ -52,22 +52,24 @@ export default class Inventario{
     }
     cambiarPosicion(nuevo,pos) {
         let aux = this.productos;
-        if (pos == 1) {
-            this.agregarInicio(nuevo);
+        let cont = 1;
+        while (aux != null) {
+            cont++;
+            aux = aux.next;
+        }
+        if (pos > cont) {
+            this.agregar(nuevo);
         } else {
-            let cont = 1;
-            while ((cont + 1) != pos) {
-                if (aux.next != null) {
-                    aux = aux.next;
-                    cont++;
-                } else {
-                    console.log("Esa posición no existe");
-                    break;
-                }
+            let aux = this.productos;
+            let cont = 0;
+            while (cont < pos - 1) {
+                cont++;
+                aux = aux.next;
             }
-            if ((cont + 1) === pos) {
-                nuevo.next = aux.next;
+            if (cont == pos - 1) {
+                let aux2 = aux.next;
                 aux.next = nuevo;
+                nuevo.next = aux2;
             }
         }
     }

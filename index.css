@@ -103,7 +103,7 @@ input[type="text"] {
     width: 100%;
     border: black solid 2px;
     line-height: 1.5;
-    padding: 0.75rem 1.5 rem;
+    height: 40px;
     border-bottom: 1px inherit black;
 }
 #listar{

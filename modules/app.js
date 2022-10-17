@@ -11,6 +11,7 @@ let codigo = document.getElementById("codigo");
 let nombre = document.getElementById("nombre");
 let costo = document.getElementById("costo");
 let cantidad = document.getElementById("cantidad");
+let posicion = document.getElementById("posicion");
 ///EVENTOS
 btnAgregar.addEventListener("click", () => {
     if (codigo.value == '' || cantidad.value == '' || costo.value == '' || nombre.value == '') {
@@ -22,24 +23,48 @@ btnAgregar.addEventListener("click", () => {
         let verifica = inventario.buscar(codigo.value);
         if (verifica == false || verifica== null) {
             let producto = new Producto(codigo.value, nombre.value, cantidad.value, costo.value);
-            inventario.agregar(producto);
-            let resListar = inventario.listado();
-            let resListarInverso = inventario.listadoInverso();
-    
-            document.getElementById('listar').innerHTML = resListar;
-            document.getElementById('listarInverso').innerHTML = resListarInverso;
+            if (posicion.value == '') {
+                inventario.agregar(producto);
+                let resListar = inventario.listado();
+                let resListarInverso = inventario.listadoInverso();
+        
+                document.getElementById('listar').innerHTML = resListar;
+                document.getElementById('listarInverso').innerHTML = resListarInverso;
+                
+                operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
+                operacion.scrollTop = operacion.scrollHeight;
+                codigo.style.border = "black solid 2px";
+                cantidad.style.border = "black solid 2px";
+                costo.style.border = "black solid 2px";
+                nombre.style.border = "black solid 2px";
+                
+                codigo.value = '';
+                nombre.value = "";
+                costo.value = "";
+                cantidad.value = "";
+            } else {
+                inventario.cambiarPosicion(producto, posicion.value);
+                let resListar = inventario.listado();
+                let resListarInverso = inventario.listadoInverso();
+        
+                document.getElementById('listar').innerHTML = resListar;
+                document.getElementById('listarInverso').innerHTML = resListarInverso;
+                
+                operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario en la posición ${posicion.value}<hr>`;
+                operacion.scrollTop = operacion.scrollHeight;
+                codigo.style.border = "black solid 2px";
+                cantidad.style.border = "black solid 2px";
+                costo.style.border = "black solid 2px";
+                nombre.style.border = "black solid 2px";
+                
+                codigo.value = '';
+                nombre.value = "";
+                costo.value = "";
+                cantidad.value = "";
+                posicion.value = "";
+                console.log(inventario.productos);
+            }
             
-            operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
-            operacion.scrollTop = operacion.scrollHeight;
-            codigo.style.border = "black solid 2px";
-            cantidad.style.border = "black solid 2px";
-            costo.style.border = "black solid 2px";
-            nombre.style.border = "black solid 2px";
-            
-            codigo.value = '';
-            nombre.value = "";
-            costo.value = "";
-            cantidad.value = "";
         } else {
             codigo.style.border = "red solid 2px";
             console.log("El código ya existe");
