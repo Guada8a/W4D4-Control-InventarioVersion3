@@ -155,7 +155,7 @@ btnModificar.addEventListener("click", () => {
                 btnAgregar.style.display = "block";
                 btnModificar.style.display = "none";
                 codigo.readOnly = false;
-                posicion,readOnly = false;
+                posicion.readOnly = false;
             }
         } 
     }
