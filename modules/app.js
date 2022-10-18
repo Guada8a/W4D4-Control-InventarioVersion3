@@ -34,10 +34,10 @@ btnAgregar.addEventListener("click", () => {
                 
                 operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
-                codigo.style.border = "white solid 2px";
-                cantidad.style.border = "white solid 2px";
-                costo.style.border = "white solid 2px";
-                nombre.style.border = "white solid 2px";
+                codigo.style.border = "none";
+                cantidad.style.border = "none";
+                costo.style.border = "none";
+                nombre.style.border = "none";;
                 
                 codigo.value = '';
                 nombre.value = "";
@@ -107,56 +107,29 @@ btnModificar.addEventListener("click", () => {
             console.log("El código no existe");
         } else {
             let producto = new Producto(codigo.value, nombre.value, cantidad.value, costo.value);
-            if (posicion.value == '') {
-                inventario.modificar(producto);
-                let resListar = inventario.listado();
-                let resListarInverso = inventario.listadoInverso();
-        
-                document.getElementById('listar').innerHTML = resListar;
-                document.getElementById('listarInverso').innerHTML = resListarInverso;
-                
-                operacion.innerHTML += `Se modificó un producto con el código ${codigo.value} y nombre "${nombre.value}" del inventario<hr>`;
-                operacion.scrollTop = operacion.scrollHeight;
-                codigo.style.border = "white solid 2px";
-                cantidad.style.border = "white solid 2px";
-                costo.style.border = "white solid 2px";
-                nombre.style.border = "white solid 2px";
-                
-                codigo.value = '';
-                nombre.value = "";
-                costo.value = "";
-                cantidad.value = "";
+            inventario.modificar(producto);
+            let resListar = inventario.listado();
+            let resListarInverso = inventario.listadoInverso();
     
-                btnAgregar.style.display = "block";
-                btnModificar.style.display = "none";
-                codigo.readOnly = false;
-            } else {
-                inventario.modificar(producto);
-                inventario.cambiarPosicionModificar(producto, posicion.value-1);
-                let resListar = inventario.listado();
-                let resListarInverso = inventario.listadoInverso();
-        
-                document.getElementById('listar').innerHTML = resListar;
-                document.getElementById('listarInverso').innerHTML = resListarInverso;
-                
-                operacion.innerHTML += `Se modificó un producto con el código ${codigo.value} y nombre "${nombre.value}" del inventario en la posición ${posicion.value}<hr>`;
-                operacion.scrollTop = operacion.scrollHeight;
-                codigo.style.border = "white solid 2px";
-                cantidad.style.border = "white solid 2px";
-                costo.style.border = "white solid 2px";
-                nombre.style.border = "white solid 2px";
-                
-                codigo.value = '';
-                nombre.value = "";
-                costo.value = "";
-                cantidad.value = "";
-                posicion.value = "";
-    
-                btnAgregar.style.display = "block";
-                btnModificar.style.display = "none";
-                codigo.readOnly = false;
-                posicion.readOnly = false;
-            }
+            document.getElementById('listar').innerHTML = resListar;
+            document.getElementById('listarInverso').innerHTML = resListarInverso;
+            
+            operacion.innerHTML += `Se modificó un producto con el código ${codigo.value} y nombre "${nombre.value}" del inventario<hr>`;
+            operacion.scrollTop = operacion.scrollHeight;
+            codigo.style.border = "none";
+            cantidad.style.border = "none";
+            costo.style.border = "none";
+            nombre.style.border = "none";
+            
+            codigo.value = '';
+            nombre.value = "";
+            costo.value = "";
+            cantidad.value = "";
+
+            btnAgregar.style.display = "block";
+            btnModificar.style.display = "none";
+            codigo.readOnly = false;
+            posicion.readOnly = false;
         } 
     }
 });
@@ -183,7 +156,10 @@ btnBuscar.addEventListener("click", () => {
         }
     }
 });
-
+document.getElementById('buscar1').addEventListener("click", () => {
+    document.getElementById('title_search').style.display = "none";
+    document.getElementById('res').innerHTML = "";
+});
 btnEliminar.addEventListener("click", () => {
     const codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");

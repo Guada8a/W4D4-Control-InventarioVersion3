@@ -15,66 +15,83 @@
     <div id="cols">
         <div id="cols1">
             <div id="container">
-                <h3 id="agregarh3">Agregar</h3>
-                <table id="crud_agregar">
-                    <tr>
-                        <td><label for="codigon" class="inp">Código</label></td>
-                        <td>Nombre</td>
-                        <td>Cantidad</td>
-                        <td>Costo</td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="form_field" name="codigon" id="codigo"></td>
-                        <td><input type="text" name="nombren" id="nombre"></td>
-                        <td><input type="number" name="cantidadn" id="cantidad"></td>
-                        <td><input type="number" name="coston" id="costo"></td>
-                    </tr>
-                    <hr>
-                    <tr >
-                        <td></td>
-                        <td colspan="2" align="center">Posición: <input type="text" class="form_field" name="posicion" id="posicion"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button type="reset" id="btnAgregar">Agregar</button>
-                            <button type="reset" id="btnModificar" style="display:none;">Modificar</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <hr>
-            <div id="container1">
-                <h3 id="buscarh3">Búsqueda</h3>
-                <div id="crud_buscar">
-                    <table id="tabla_buscar">
-                        <tr id="t2">
-                            <td><h3>Código: </h3></td>
-                            <td rowspan="2"><input type="search" placeholder="Ingresa un valor" name="buscar1" id="buscar1"></td>
-                            <td><button id="btnBuscar">Buscar</button></td>
-                            <td><button id="btnEliminar">Eliminar</button></td>
-                        </tr>
-                        <tr></tr>
-                    </table>
-                    <div id="search">
-                        <h4 style="display:none;" id="title_search">Resultado de la búsqueda</h4>
-                        <table id="res"></table>
+                <div id="cols3">
+                    <div id="cols21">
+                        <h2 id="agregarh3">Agregar</h2>
+                        <form style="margin-top:20px;">
+                            <div class="group">
+                                <input type="text" class="form_field" name="codigon" id="codigo" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Código</label>
+                            </div>
+                            <div class="group">
+                                <input type="text" class="form_field" name="nombren" id="nombre" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Nombre</label>
+                            </div>
+                            <div class="group">
+                                <input type="number" name="cantidadn" id="cantidad" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Cantidad</label>
+                            </div>
+                            <div class="group">
+                                <input type="number" name="coston" id="costo" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Costo</label>
+                            </div>
+                            <div class="group">
+                                <input type="text" class="form_field" name="posicion" id="posicion" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Posición</label>
+                            </div>
+                        </form>
+                        <table>
+                            <tr>
+                                <td colspan="4">
+                                    <button type="reset" id="btnAgregar">Agregar</button>
+                                    <button type="reset" id="btnModificar" style="display:none;">Modificar</button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <div id="container2">
-                <div id="listardiv">
-                    <table id="listar" class="round_table">
-                    </table>
-                    <table id="listarInverso" class="round_table">
-                    </table>
+                    <div id="cols22">
+                        <h2 id="buscarh3">Búsqueda</h2>
+                        <div id="crud_buscar">
+                            <table id="tabla_buscar">
+                                <tr id="t2">
+                                    <td>
+                                        <h3>Código: </h3>
+                                    </td>
+                                    <td rowspan="2"><input type="search" placeholder="Ingresa un valor" name="buscar1" id="buscar1"></td>
+                                    <td><button id="btnBuscar">Buscar</button></td>
+                                    <td><button id="btnEliminar">Eliminar</button></td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                            <div id="search" style="margin-top:10px;">
+                                <h3 style="display:none;" id="title_search">Resultado de la búsqueda</h3>
+                                <table id="res"></table>
+                            </div>
+                        </div>
+                        <div id="listardiv">
+                            <h2 id="buscarh3">Información del Inventario</h2>
+                            <table id="listar" class="round_table">
+                            </table>
+                            <table id="listarInverso" class="round_table">
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="cols2">
             <div id="operacion" style="width:50%;overflow:scroll;position:sticky">
-                <label id="opera_lbl">Operación:</label>
+                <span id="opera_lbl">Operación:</span>
                 <br><br><hr style="margin-top:26px;">
             </div>
         </div>
