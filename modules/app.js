@@ -5,6 +5,7 @@ let inventario = new Inventario();
 
 let btnAgregar = document.getElementById("btnAgregar");
 let btnBuscar = document.getElementById("btnBuscar");
+let btnModificar = document.getElementById("btnModificar");
 let btnEliminar = document.getElementById("btnEliminar");
 let operacion = document.getElementById("operacion");
 let codigo = document.getElementById("codigo");
@@ -71,6 +72,95 @@ btnAgregar.addEventListener("click", () => {
         } 
     }
 });
+/*Modificar*/
+document.attachEvent = function (evt, q, fn) {
+
+    document.addEventListener(evt, (e) => {
+        if (e.target.matches(q)) {
+            fn.apply(e.target, [e]);
+        }
+    });
+
+};
+document.attachEvent('click', '.modificar', function () {
+    codigo.value = this.getAttribute('codigo');
+    nombre.value = this.getAttribute('nombre');
+    cantidad.value = parseInt(this.getAttribute('cantidad'));
+    costo.value = parseInt(this.getAttribute('costo'));
+    
+    btnAgregar.style.display = "none";
+    btnModificar.style.display = "block";
+    codigo.readOnly = true;
+    posicion.readOnly = true;
+});
+
+btnModificar.addEventListener("click", () => {
+    if (codigo.value == '' || cantidad.value == '' || costo.value == '' || nombre.value == '') {
+        codigo.style.border = "red solid 2px";
+        cantidad.style.border = "red solid 2px";
+        costo.style.border = "red solid 2px";
+        nombre.style.border = "red solid 2px";
+    } else {
+        let verifica = inventario.buscar(codigo.value);
+        if (verifica == false || verifica== null) {
+            console.log("El código no existe");
+        } else {
+            let producto = new Producto(codigo.value, nombre.value, cantidad.value, costo.value);
+            if (posicion.value == '') {
+                inventario.modificar(producto);
+                let resListar = inventario.listado();
+                let resListarInverso = inventario.listadoInverso();
+        
+                document.getElementById('listar').innerHTML = resListar;
+                document.getElementById('listarInverso').innerHTML = resListarInverso;
+                
+                operacion.innerHTML += `Se modificó un producto con el código ${codigo.value} y nombre "${nombre.value}" del inventario<hr>`;
+                operacion.scrollTop = operacion.scrollHeight;
+                codigo.style.border = "white solid 2px";
+                cantidad.style.border = "white solid 2px";
+                costo.style.border = "white solid 2px";
+                nombre.style.border = "white solid 2px";
+                
+                codigo.value = '';
+                nombre.value = "";
+                costo.value = "";
+                cantidad.value = "";
+    
+                btnAgregar.style.display = "block";
+                btnModificar.style.display = "none";
+                codigo.readOnly = false;
+            } else {
+                inventario.modificar(producto);
+                inventario.cambiarPosicionModificar(producto, posicion.value-1);
+                let resListar = inventario.listado();
+                let resListarInverso = inventario.listadoInverso();
+        
+                document.getElementById('listar').innerHTML = resListar;
+                document.getElementById('listarInverso').innerHTML = resListarInverso;
+                
+                operacion.innerHTML += `Se modificó un producto con el código ${codigo.value} y nombre "${nombre.value}" del inventario en la posición ${posicion.value}<hr>`;
+                operacion.scrollTop = operacion.scrollHeight;
+                codigo.style.border = "white solid 2px";
+                cantidad.style.border = "white solid 2px";
+                costo.style.border = "white solid 2px";
+                nombre.style.border = "white solid 2px";
+                
+                codigo.value = '';
+                nombre.value = "";
+                costo.value = "";
+                cantidad.value = "";
+                posicion.value = "";
+    
+                btnAgregar.style.display = "block";
+                btnModificar.style.display = "none";
+                codigo.readOnly = false;
+                posicion,readOnly = false;
+            }
+        } 
+    }
+});
+
+    
 btnBuscar.addEventListener("click", () => {
     let codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");
@@ -92,6 +182,7 @@ btnBuscar.addEventListener("click", () => {
         }
     }
 });
+
 btnEliminar.addEventListener("click", () => {
     const codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");

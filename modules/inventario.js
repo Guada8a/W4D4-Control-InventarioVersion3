@@ -77,13 +77,26 @@ export default class Inventario{
             }
         }
     }
+    modificar(nuevo) {
+        let aux = this.productos;
+        while (aux.codigo != nuevo.codigo) {
+            aux = aux.next;
+        }
+        if (aux.codigo == nuevo.codigo) {
+            aux.nombre = nuevo.nombre;
+            aux.cantidad = nuevo.cantidad;
+            aux.costo = nuevo.costo;
+            aux.total = nuevo.total;
+        }
+    }
     listado() {
-        let str = '<thead><th colspan="6"><h3>PRODUCTOS | Listado</h3></th><tr><td width="5%">Pos.</td><td width="10%">Código</td><td width="40%">Nombre</td><td width="15%">Cantidad</td><td width="15%">Costo</td><td width="15%">Total</td></tr></thead>';
+        let str = '<thead><th colspan="7"><h3>PRODUCTOS | Listado</h3></th><tr><td width="5%">Pos.</td><td width="10%">Código</td><td width="20%">Nombre</td><td width="15%">Cantidad</td><td width="15%">Costo</td><td width="15%">Total</td><td width="20%"></td></tr></thead>';
         let pos = 1;
         if (this.productos != null) {
             let temp = this.productos;
             while (temp != null) {
-                str += `<tr><td class='num'>${pos}</td><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td></tr>`;
+                str += `<tr id="${temp.codigo}"><td class='num'>${pos}</td><td id="code">${temp.codigo}</td><td id="nombre">${temp.nombre}</td><td id="cantidad"> ${temp.cantidad} </td><td id="costo">${temp.costo}</td><td>${temp.total}</td>`;
+                str += `<td width='20%'><button class='modificar' type='reset' codigo="${temp.codigo}" nombre="${temp.nombre}" cantidad="${temp.cantidad}" costo="${temp.costo}">Modificar</button></td></tr>`;
                 temp = temp.next;
                 pos++;
             }
@@ -94,13 +107,13 @@ export default class Inventario{
         }
     }
     listadoInverso() {
-        let head = '<thead><th colspan="6"><h3>PRODUCTOS | Listado Inverso</h3></th><tr><td width="5%">Pos.</td><td width="10%">Código</td><td width="40%">Nombre</td><td width="15%">Cantidad</td><td width="15%">Costo</td><td width="15%">Total</td></tr></thead>';
+        let head = '<thead><th colspan="7"><h3>PRODUCTOS | Listado Inverso</h3></th><tr><td width="5%">Pos.</td><td width="10%">Código</td><td width="20%">Nombre</td><td width="15%">Cantidad</td><td width="15%">Costo</td><td width="15%">Total</td><td width="20%"></td></tr></thead>';
         let str = '';
         let pos = 1;
         if (this.productos != null) {
             let temp = this.productos;
             while (temp != null) {
-                str = `<tr><td class='num'>${pos}</td><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td></tr>` + str;
+                str = `<tr><td class='num'>${pos}</td><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td><td><button type='reset' id="${temp.codigo}">Modificar</button</td></tr>` + str;
                 temp = temp.next;
                 pos++;
             }
@@ -110,4 +123,5 @@ export default class Inventario{
             return str = '';
         }
     }
+    
 }

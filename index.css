@@ -113,6 +113,10 @@ input[type="text"] {
     height: 40px;
     border-bottom: 1px inherit black;
 }
+input[type="text"]:read-only{
+    background-color: #001212;
+    color:white;
+}
 #listar{
     margin-bottom: 20px;
 }
