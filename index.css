@@ -394,7 +394,7 @@ td{
     padding: 2px;
 }
 #listar td,#listarInverso td,#res td{
-    border: 1px solid black;
+    border: 1px solid transparent;
     padding: 5px;
 }
 table,td{

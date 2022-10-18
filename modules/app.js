@@ -53,17 +53,16 @@ btnAgregar.addEventListener("click", () => {
                 
                 operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario en la posición ${posicion.value}<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
-                codigo.style.border = "white solid 2px";
-                cantidad.style.border = "white solid 2px";
-                costo.style.border = "white solid 2px";
-                nombre.style.border = "white solid 2px";
+                codigo.style.border = "none";
+                cantidad.style.border = "none";
+                costo.style.border = "none";
+                nombre.style.border = "none";;
                 
                 codigo.value = '';
                 nombre.value = "";
                 costo.value = "";
                 cantidad.value = "";
                 posicion.value = "";
-                console.log(inventario.productos);
             }
             
         } else {
