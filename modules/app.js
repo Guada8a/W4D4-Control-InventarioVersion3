@@ -91,6 +91,7 @@ document.attachEvent('click', '.modificar', function () {
     btnAgregar.style.display = "none";
     btnModificar.style.display = "block";
     codigo.readOnly = true;
+    nombre.focus();
     posicion.readOnly = true;
 });
 
