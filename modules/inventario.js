@@ -26,10 +26,12 @@ export default class Inventario{
     buscar(codigo) {
         let aux = this.productos;
         if (aux) {
-            while (aux.codigo != codigo)
-                aux = aux.next;
-            if (aux.codigo == codigo)
-                return aux;
+            try {
+                while (aux.codigo != codigo)
+                    aux = aux.next;
+                if (aux.codigo == codigo)
+                    return aux;
+            } catch (e) { }
         }
     }
     eliminar(codigo) {

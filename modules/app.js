@@ -43,6 +43,8 @@ btnAgregar.addEventListener("click", () => {
                 nombre.value = "";
                 costo.value = "";
                 cantidad.value = "";
+
+                codigo.focus();
             } else {
                 inventario.cambiarPosicion(producto, posicion.value-1);
                 let resListar = inventario.listado();
@@ -63,6 +65,8 @@ btnAgregar.addEventListener("click", () => {
                 costo.value = "";
                 cantidad.value = "";
                 posicion.value = "";
+                
+                codigo.focus();
             }
             
         } else {
