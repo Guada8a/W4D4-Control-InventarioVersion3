@@ -11,6 +11,7 @@ export default class Inventario{
             while (aux.next != null)
                 aux = aux.next;
             aux.next = producto;
+            aux.next.prev = aux;
         }
         console.log(this.productos);
     }
@@ -20,7 +21,7 @@ export default class Inventario{
         else {
             let aux = this.productos;
             this.productos = producto;
-            producto.next = aux;
+            this.productos.next = aux;
         }
     }
     buscar(codigo) {
@@ -36,57 +37,96 @@ export default class Inventario{
     }
     eliminar(codigo) {
         let aux = this.productos;
-        if (this.productos.codigo == codigo) {
-            this.productos = this.productos.next;
+        if(this.productos.codigo == codigo){
+            this.eliminarInicio();
         } else {
             while (aux.next.codigo != codigo) {
                 aux = aux.next;
             }
             if (aux.next.codigo === codigo) {
                 aux.next = aux.next.next;
+                aux.next.prev = aux;
+            } else {
+                console.log("No se encontró el producto");
             }
         }
     }
     eliminarInicio() {
-        this.productos = this.productos.next;
-    }
-    cambiarPosicion(nuevo,pos) {
         let aux = this.productos;
-        let cont = 1;
-        if (pos == 0) {
-            this.agregarInicio(nuevo);
-        } else {
-            while (aux != null) {
-                cont++;
+        this.productos = aux.next;
+        this.productos.prev = null;
+    }
+    ordenarPorCodigo() {
+        let temp = this.productos;
+        let aux = this.productos;
+        let cont = 0;
+        while (temp != null) {
+            cont++;
+            temp = temp.next;
+        }
+        for (let i = 0; i < cont; i++) {
+            while (aux.next != null) {
+                if (parseInt(aux.codigo) > parseInt(aux.next.codigo)) {
+                    let aux2 = aux.codigo;
+                    aux.codigo = aux.next.codigo;
+                    aux.next.codigo = aux2;
+                    aux2 = aux.nombre;
+                    aux.nombre = aux.next.nombre;
+                    aux.next.nombre = aux2;
+                    aux2 = aux.cantidad;
+                    aux.cantidad = aux.next.cantidad;
+                    aux.next.cantidad = aux2;
+                    aux2 = aux.costo;
+                    aux.costo = aux.next.costo;
+                    aux.next.costo = aux2;
+                    aux2 = aux.total;
+                    aux.total = aux.next.total;
+                    aux.next.total = aux2;
+                }
                 aux = aux.next;
             }
-            if (pos > cont) {
-                this.agregar(nuevo);
-            } else {
-                let aux = this.productos;
-                let cont = 0;
-                while (cont < pos - 1) {
-                    cont++;
+            aux = this.productos;
+        }
+    }
+    cambiarPosicion(nuevo, pos) { 
+        let aux = this.productos;
+        if (aux) {
+            try {
+                while (aux.codigo != nuevo.codigo)
                     aux = aux.next;
+                if (aux.codigo == nuevo.codigo) {
+                    if (pos == 1) {
+                        this.eliminarInicio();
+                        this.agregarInicio(nuevo);
+                    } else {
+                        let temp = this.productos;
+                        let cont = 1;
+                        while (cont < pos) {
+                            temp = temp.next;
+                            cont++;
+                        }
+                        this.eliminar(nuevo.codigo);
+                        this.agregarInicio(nuevo);
+                        this.eliminarInicio();
+                        this.agregarInicio(temp);
+                    }
                 }
-                if (cont == pos - 1) {
-                    let aux2 = aux.next;
-                    aux.next = nuevo;
-                    nuevo.next = aux2;
-                }
-            }
+            } catch (e) { }
         }
     }
     modificar(nuevo) {
         let aux = this.productos;
-        while (aux.codigo != nuevo.codigo) {
-            aux = aux.next;
-        }
-        if (aux.codigo == nuevo.codigo) {
-            aux.nombre = nuevo.nombre;
-            aux.cantidad = nuevo.cantidad;
-            aux.costo = nuevo.costo;
-            aux.total = nuevo.total;
+        if (aux) {
+            try {
+                while (aux.codigo != nuevo.codigo)
+                    aux = aux.next;
+                if (aux.codigo == nuevo.codigo) {
+                    aux.nombre = nuevo.nombre;
+                    aux.cantidad = nuevo.cantidad;
+                    aux.costo = nuevo.costo;
+                    aux.total = nuevo.total;
+                }
+            } catch (e) { }
         }
     }
     listado() {
@@ -112,9 +152,12 @@ export default class Inventario{
         let pos = 1;
         if (this.productos != null) {
             let temp = this.productos;
-            while (temp != null) {
-                str = `<tr><td class='num'>${pos}</td><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td>` + str;
+            while (temp.next != null) {
                 temp = temp.next;
+            }
+            while (temp != null) {
+                str += `<tr><td class='num'>${pos}</td><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td>`;
+                temp = temp.prev;
                 pos++;
             }
             return head+str;

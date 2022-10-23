@@ -6,6 +6,7 @@ export default class Producto {
         this.costo = costo;
         this.total = cantidad * costo;
         this.next = null;
+        this.prev = null;
     }
     update(nombre,cantidad,costo) {
         this.nombre = nombre;

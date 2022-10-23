@@ -26,9 +26,9 @@ btnAgregar.addEventListener("click", () => {
             let producto = new Producto(codigo.value, nombre.value, cantidad.value, costo.value);
             if (posicion.value == '') {
                 inventario.agregar(producto);
+                inventario.ordenarPorCodigo();
                 let resListar = inventario.listado();
                 let resListarInverso = inventario.listadoInverso();
-        
                 document.getElementById('listar').innerHTML = resListar;
                 document.getElementById('listarInverso').innerHTML = resListarInverso;
                 
@@ -172,7 +172,7 @@ btnEliminar.addEventListener("click", () => {
             let res = inventario.eliminar(aux.codigo);
             let resListar = inventario.listado();
             let resListarInverso = inventario.listadoInverso();
-            if (res!= false) {
+            if (res != false) {
                 document.getElementById('listar').innerHTML = resListar;
                 document.getElementById('listarInverso').innerHTML = resListarInverso;
                 document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Eliminado</h3>";
@@ -190,7 +190,7 @@ btnEliminar.addEventListener("click", () => {
         }
     } else {
         document.getElementById('title_search').style.display = "block";
-        divRes.innerHTML = "Ingrese un código válido";  
+        divRes.innerHTML = "Ingrese un código válido";
     }
 
 });
