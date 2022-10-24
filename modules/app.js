@@ -58,7 +58,7 @@ btnAgregar.addEventListener("click", () => {
                 codigo.style.border = "none";
                 cantidad.style.border = "none";
                 costo.style.border = "none";
-                nombre.style.border = "none";;
+                nombre.style.border = "none";
                 
                 codigo.value = '';
                 nombre.value = "";
@@ -76,9 +76,8 @@ btnAgregar.addEventListener("click", () => {
     }
 });
 /*Modificar*/
-document.attachEvent = function (evt, q, fn) {
-
-    document.addEventListener(evt, (e) => {
+document.attachEvent = function (evento, q, f) {
+    document.addEventListener(evento, (e) => {
         if (e.target.matches(q)) {
             fn.apply(e.target, [e]);
         }
@@ -137,7 +136,6 @@ btnModificar.addEventListener("click", () => {
     }
 });
 
-    
 btnBuscar.addEventListener("click", () => {
     let codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");
