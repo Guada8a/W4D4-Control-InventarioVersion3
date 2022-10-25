@@ -53,8 +53,13 @@ export default class Inventario{
     }
     eliminarInicio() {
         let aux = this.productos;
-        this.productos = aux.next;
-        this.productos.prev = null;
+        if (this.productos.next == null) {
+            this.productos = null;
+        } else {
+            this.productos = aux.next;
+            this.productos.prev = null;
+        }
+        console.log(this.productos);
     }
     ordenarPorCodigo() {
         let temp = this.productos;
@@ -142,8 +147,7 @@ export default class Inventario{
             }
             return str;
         } else {
-            console.log("No hay productos en el inventario");
-            return str = '';
+            return str = "No hay productos en el inventario";
         }
     }
     listadoInverso() {
@@ -162,9 +166,7 @@ export default class Inventario{
             }
             return head+str;
         } else {
-            console.log("No hay productos en el inventario");
-            return str = '';
+            return str = "";
         }
     }
-    
 }
