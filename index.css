@@ -365,7 +365,110 @@ header {
 #t2 {
     margin-left: 10px;
 }
-
+.chip-add{
+    display: inline-flex;
+    flex-direction: row;
+    background-color: green;
+    border: none;
+    cursor: default;
+    height: 22px;
+    outline: none;
+    padding: 0;
+    font-size: 11px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+}
+.chip-add1 {
+    display: inline-flex;
+    flex-direction: row;
+    background-color: greenyellow;
+    border: none;
+    cursor: default;
+    height: 22px;
+    outline: none;
+    padding: 0;
+    font-size: 11px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+}
+.chip-search {
+    display: inline-flex;
+    flex-direction: row;
+    background-color: blue;
+    border: none;
+    cursor: default;
+    height: 22px;
+    outline: none;
+    padding: 0;
+    font-size: 11px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+}
+.chip-update {
+    display: inline-flex;
+    flex-direction: row;
+    background-color: rgb(223, 223, 29);
+    border: none;
+    cursor: default;
+    height: 22px;
+    outline: none;
+    padding: 0;
+    font-size: 11px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+}
+.chip-delete {
+    display: inline-flex;
+    flex-direction: row;
+    background-color: red;
+    border: none;
+    cursor: default;
+    height: 22px;
+    outline: none;
+    padding: 0;
+    font-size: 11px;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    justify-content: center;
+}
+.chip-content {
+    cursor: inherit;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    white-space: nowrap;
+    padding-left: 12px;
+    padding-right: 12px;
+}
 button {
     padding: 10px;
     width: 60%;

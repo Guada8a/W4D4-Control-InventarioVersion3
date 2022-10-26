@@ -13,6 +13,13 @@ let nombre = document.getElementById("nombre");
 let costo = document.getElementById("costo");
 let cantidad = document.getElementById("cantidad");
 let posicion = document.getElementById("posicion");
+
+//CHIPS
+let chipAdd = '<div class="chip-add"><div class="chip-content">NUEVO</div></div></div>';
+let chipAdd1 = '<div class="chip-add1"><div class="chip-content">NUEVO</div></div></div>';
+let chipSearch = '<div class="chip-search"><div class="chip-content">BUSCAR</div></div></div>';
+let chipDelete = '<div class="chip-delete"><div class="chip-content">ELIMINAR</div></div></div>';
+let chipUpdate = '<div class="chip-update"><div class="chip-content">MODIFICAR</div></div></div>';
 ///EVENTOS
 btnAgregar.addEventListener("click", () => {
     if (codigo.value == '' || cantidad.value == '' || costo.value == '' || nombre.value == '') {
@@ -28,11 +35,13 @@ btnAgregar.addEventListener("click", () => {
                 inventario.agregar(producto);
                 inventario.ordenarPorCodigo();
                 let resListar = inventario.listado();
-                let resListarInverso = inventario.listadoInverso();
+                inventario.invertir();
+                let resListarInverso = inventario.listado();
+                inventario.invertir();
                 document.getElementById('listar').innerHTML = resListar;
                 document.getElementById('listarInverso').innerHTML = resListarInverso;
                 
-                operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
+                operacion.innerHTML += `${chipAdd} Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
                 codigo.style.border = "none";
                 cantidad.style.border = "none";
@@ -48,12 +57,13 @@ btnAgregar.addEventListener("click", () => {
             } else {
                 inventario.cambiarPosicion(producto, posicion.value-1);
                 let resListar = inventario.listado();
-                let resListarInverso = inventario.listadoInverso();
-        
+                inventario.invertir();
+                let resListarInverso = inventario.listado();
+                inventario.invertir();
                 document.getElementById('listar').innerHTML = resListar;
                 document.getElementById('listarInverso').innerHTML = resListarInverso;
                 
-                operacion.innerHTML += `Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario en la posición ${posicion.value}<hr>`;
+                operacion.innerHTML += `${chipAdd1} Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario en la posición ${posicion.value}<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
                 codigo.style.border = "none";
                 cantidad.style.border = "none";
@@ -76,7 +86,7 @@ btnAgregar.addEventListener("click", () => {
     }
 });
 /*Modificar*/
-document.attachEvent = function (evento, q, f) {
+document.attachEvent = function (evento, q, fn) {
     document.addEventListener(evento, (e) => {
         if (e.target.matches(q)) {
             fn.apply(e.target, [e]);
@@ -111,12 +121,14 @@ btnModificar.addEventListener("click", () => {
             let producto = new Producto(codigo.value, nombre.value, cantidad.value, costo.value);
             inventario.modificar(producto);
             let resListar = inventario.listado();
-            let resListarInverso = inventario.listadoInverso();
+            inventario.invertir();
+            let resListarInverso = inventario.listado();
+            inventario.invertir();
     
             document.getElementById('listar').innerHTML = resListar;
             document.getElementById('listarInverso').innerHTML = resListarInverso;
             
-            operacion.innerHTML += `Se modificó un producto con el código ${codigo.value} y nombre "${nombre.value}" del inventario<hr>`;
+            operacion.innerHTML += `${chipUpdate} Se modificó un producto con el código ${codigo.value} y nombre "${nombre.value}" del inventario<hr>`;
             operacion.scrollTop = operacion.scrollHeight;
             codigo.style.border = "none";
             cantidad.style.border = "none";
@@ -148,7 +160,7 @@ btnBuscar.addEventListener("click", () => {
         if (producto != false) {
             document.getElementById('title_search').style.display = "block";
             divRes.innerHTML = `<thead><tr><td>Código</td><td>Nombre</td><td>Cantidad</td><td>Costo</td><td>Total</td></thead></tr><tr><td>${producto.codigo} </td> <td>${producto.nombre} </td><td> ${producto.cantidad} </td><td>${producto.costo}</td><td>${producto.total}</td></tr>`;
-            operacion.innerHTML += `Se buscó un producto con el código <b>${codigo}</b> del inventario<hr>`;
+            operacion.innerHTML += `${chipSearch} Se buscó un producto con el código <b>${codigo}</b> del inventario<hr>`;
             operacion.scrollTop = operacion.scrollHeight;
         } else {
             document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Resultado de la búsqueda</h3>";
@@ -165,18 +177,21 @@ btnEliminar.addEventListener("click", () => {
     const codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");
     if (codigo != '') {
-        if (inventario.productos != null) {
+        if (inventario.primero != null) {
             let aux = new Producto(codigo, "", "", "");
             let res = inventario.eliminar(aux.codigo);
-            let resListar = inventario.listado();
-            let resListarInverso = inventario.listadoInverso();
             if (res != false) {
+                let resListar = inventario.listado();
+                inventario.invertir();
+                let resListarInverso = inventario.listado();
+                inventario.invertir();
+
                 document.getElementById('listar').innerHTML = resListar;
                 document.getElementById('listarInverso').innerHTML = resListarInverso;
                 document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Eliminado</h3>";
                 document.getElementById('title_search').style.display = "block";
                 divRes.innerHTML = `El producto con código ${codigo} ha sido eliminado`;
-                operacion.innerHTML += `Se eliminó un producto con el código <b>${codigo}</b> del inventario<hr>`;
+                operacion.innerHTML += `${chipDelete} Se eliminó un producto con el código <b>${codigo}</b> del inventario<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
             } else {
                 document.getElementById('title_search').style.display = "block";
@@ -184,7 +199,7 @@ btnEliminar.addEventListener("click", () => {
             }
         } else {
             document.getElementById('title_search').style.display = "block";
-            divRes.innerHTML = "No hay productos en el inventario";
+            document.getElementById('listarInverso').innerHTML = "";
         }
     } else {
         document.getElementById('title_search').style.display = "block";

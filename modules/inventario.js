@@ -1,31 +1,31 @@
 import Producto from "./producto.js";
 export default class Inventario{
     constructor() {
-        this.productos = null;
+        this.primero = null;
+        this.ultimo = null;
     }
     agregar(producto) {
-        if (this.productos === null)
-            this.productos = producto;
-        else {
-            let aux = this.productos;
-            while (aux.next != null)
-                aux = aux.next;
-            aux.next = producto;
-            aux.next.prev = aux;
+        if (!this.primero) {
+            this.primero = producto;
+            this.ultimo = producto;
+        }else {
+            this.ultimo.next = producto;
+            producto.prev = this.ultimo;
+            this.ultimo = producto;
         }
-        console.log(this.productos);
     }
     agregarInicio(producto) {
-        if (this.productos === null)
-            this.productos = producto;
-        else {
-            let aux = this.productos;
-            this.productos = producto;
-            this.productos.next = aux;
+        if (!this.primero) {
+            this.primero = producto;
+            this.ultimo = producto;
+        } else {
+            producto.next = this.primero;
+            this.primero.prev = producto;
+            this.primero = producto;
         }
     }
     buscar(codigo) {
-        let aux = this.productos;
+        let aux = this.primero;
         if (aux) {
             try {
                 while (aux.codigo != codigo)
@@ -36,34 +36,31 @@ export default class Inventario{
         }
     }
     eliminar(codigo) {
-        let aux = this.productos;
-        if(this.productos.codigo == codigo){
-            this.eliminarInicio();
+        let aux = this.primero;
+        if (this.primero.codigo == codigo) {
+            this.primero = this.primero.next;
         } else {
             while (aux.next.codigo != codigo) {
                 aux = aux.next;
             }
             if (aux.next.codigo === codigo) {
                 aux.next = aux.next.next;
-                aux.next.prev = aux;
-            } else {
-                console.log("No se encontró el producto");
             }
         }
     }
     eliminarInicio() {
-        let aux = this.productos;
-        if (this.productos.next == null) {
-            this.productos = null;
+        let aux = this.primero;
+        if (this.primero.next == null) {
+            this.primero = null;
         } else {
-            this.productos = aux.next;
-            this.productos.prev = null;
+            this.primero = aux.next;
+            this.primero.prev = null;
         }
-        console.log(this.productos);
+        console.log(this.primero);
     }
     ordenarPorCodigo() {
-        let temp = this.productos;
-        let aux = this.productos;
+        let temp = this.primero;
+        let aux = this.primero;
         let cont = 0;
         while (temp != null) {
             cont++;
@@ -90,11 +87,11 @@ export default class Inventario{
                 }
                 aux = aux.next;
             }
-            aux = this.productos;
+            aux = this.primero;
         }
     }
     cambiarPosicion(nuevo, pos) { 
-        let aux = this.productos;
+        let aux = this.primero;
         if (aux) {
             try {
                 while (aux.codigo != nuevo.codigo)
@@ -104,7 +101,7 @@ export default class Inventario{
                         this.eliminarInicio();
                         this.agregarInicio(nuevo);
                     } else {
-                        let temp = this.productos;
+                        let temp = this.primero;
                         let cont = 1;
                         while (cont < pos) {
                             temp = temp.next;
@@ -120,7 +117,7 @@ export default class Inventario{
         }
     }
     modificar(nuevo) {
-        let aux = this.productos;
+        let aux = this.primero;
         if (aux) {
             try {
                 while (aux.codigo != nuevo.codigo)
@@ -135,10 +132,10 @@ export default class Inventario{
         }
     }
     listado() {
-        let str = '<thead><th colspan="7"><h3>PRODUCTOS | Listado</h3></th><tr><td width="5%">Pos.</td><td width="10%">Código</td><td width="20%">Nombre</td><td width="15%">Cantidad</td><td width="15%">Costo</td><td width="15%">Total</td><td width="20%"></td></tr></thead>';
+        let str = '<thead><th colspan="7"><h3>INVENTARIO</h3></th><tr><td width="5%">Pos.</td><td width="10%">Código</td><td width="20%">Nombre</td><td width="15%">Cantidad</td><td width="15%">Costo</td><td width="15%">Total</td><td width="20%"></td></tr></thead>';
         let pos = 1;
-        if (this.productos != null) {
-            let temp = this.productos;
+        if (this.primero != null) {
+            let temp = this.primero;
             while (temp != null) {
                 str += `<tr id="${temp.codigo}"><td class='num'>${pos}</td><td id="code">${temp.codigo}</td><td id="nombre">${temp.nombre}</td><td id="cantidad"> ${temp.cantidad} </td><td id="costo">${temp.costo}</td><td>${temp.total}</td>`;
                 str += `<td width='20%'><button class='modificar' type='reset' codigo="${temp.codigo}" nombre="${temp.nombre}" cantidad="${temp.cantidad}" costo="${temp.costo}">Modificar</button></td></tr>`;
@@ -150,23 +147,17 @@ export default class Inventario{
             return str = "No hay productos en el inventario";
         }
     }
-    listadoInverso() {
-        let head = '<thead><th colspan="6"><h3>PRODUCTOS | Listado Inverso</h3></th><tr><td width="5%">Pos.</td><td width="10%">Código</td><td width="20%">Nombre</td><td width="15%">Cantidad</td><td width="15%">Costo</td><td width="15%">Total</td></tr></thead>';
-        let str = '';
-        let pos = 1;
-        if (this.productos != null) {
-            let temp = this.productos;
-            while (temp.next != null) {
-                temp = temp.next;
-            }
-            while (temp != null) {
-                str += `<tr><td class='num'>${pos}</td><td>${temp.codigo} </td> <td>${temp.nombre} </td><td> ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td>`;
-                temp = temp.prev;
-                pos++;
-            }
-            return head+str;
-        } else {
-            return str = "";
+    invertir() {
+        let temp = this.primero;
+        let aux = '';
+        while (temp) {
+            aux = temp.next;
+            temp.next = temp.prev;
+            temp.prev = aux;
+            temp = temp.prev;
         }
+        let aux2 = this.primero;
+        this.primero = this.ultimo;
+        this.ultimo = aux2;
     }
 }
