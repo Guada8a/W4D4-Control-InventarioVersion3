@@ -180,8 +180,13 @@ btnEliminar.addEventListener("click", () => {
     if (codigo != '') {
         if (inventario.primero != null) {
             let aux = new Producto(codigo, "", "", "");
-            let res = inventario.eliminar(aux.codigo);
+            let res = inventario.eliminarProducto(aux.codigo);
             if (res != false) {
+                inventario.invertir();
+                let resListarInverso = inventario.listado();
+                inventario.invertir();
+                document.getElementById('listar').innerHTML = inventario.listado();
+                document.getElementById('listarInverso').innerHTML = resListarInverso;
                 document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Eliminado</h3>";
                 document.getElementById('title_search').style.display = "block";
                 divRes.innerHTML = `El producto con código ${codigo} ha sido eliminado`;

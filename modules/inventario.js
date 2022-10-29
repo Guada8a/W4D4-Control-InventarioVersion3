@@ -35,16 +35,29 @@ export default class Inventario{
             } catch (e) { }
         }
     }
-    eliminar(codigo) {
+    eliminarProducto(codigo) {
         let aux = this.primero;
-        if (this.primero.codigo == codigo) {
-            this.primero = this.primero.next;
-        } else {
-            while (aux.next.codigo != codigo) {
-                aux = aux.next;
-            }
-            if (aux.next.codigo === codigo) {
-                aux.next = aux.next.next;
+        if (this.primero != null) {
+            if(this.primero.codigo == codigo){
+                this.primero = this.primero.next;
+                if (this.primero != null) {
+                    this.primero.prev = null;
+                }
+                return aux;
+            } else {
+                try {
+                    while (aux.next.codigo != codigo)
+                        aux = aux.next;
+                    if (aux.next.codigo == codigo) {
+                        try{
+                            aux.next = aux.next.next;
+                            aux.next.prev = aux;
+                        } catch (e) {
+                            return aux;
+                        }
+                        return aux;
+                    }
+                }catch (e) { }
             }
         }
     }
