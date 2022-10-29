@@ -137,8 +137,7 @@ export default class Inventario{
         if (this.primero != null) {
             let temp = this.primero;
             while (temp != null) {
-                str += `<tr id="${temp.codigo}"><td class='num'>${pos}</td><td id="code">${temp.codigo}</td><td id="nombre">${temp.nombre}</td><td id="cantidad"> ${temp.cantidad} </td><td id="costo">${temp.costo}</td><td>${temp.total}</td>`;
-                str += `<td width='20%'><button class='modificar' type='reset' codigo="${temp.codigo}" nombre="${temp.nombre}" cantidad="${temp.cantidad}" costo="${temp.costo}">Modificar</button></td></tr>`;
+                str += `<tr><td class='num'>${pos}</td><td>${temp.codigo}</td><td>${temp.nombre}</td><td > ${temp.cantidad} </td><td>${temp.costo}</td><td>${temp.total}</td><td width='20%'><button class='modificar' codigo="${temp.codigo}" nombre="${temp.nombre}" cantidad="${temp.cantidad}" costo="${temp.costo}">Modificar</button></td></tr>`;
                 temp = temp.next;
                 pos++;
             }
@@ -146,6 +145,10 @@ export default class Inventario{
         } else {
             return str = "No hay productos en el inventario";
         }
+    }
+    listadoInverso() {
+        this.invertir();
+        this.listado();
     }
     invertir() {
         let temp = this.primero;

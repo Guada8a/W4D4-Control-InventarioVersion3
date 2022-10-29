@@ -13,7 +13,6 @@ let nombre = document.getElementById("nombre");
 let costo = document.getElementById("costo");
 let cantidad = document.getElementById("cantidad");
 let posicion = document.getElementById("posicion");
-
 //CHIPS
 let chipAdd = '<div class="chip-add"><div class="chip-content">NUEVO</div></div></div>';
 let chipAdd1 = '<div class="chip-add1"><div class="chip-content">NUEVO</div></div></div>';
@@ -41,7 +40,8 @@ btnAgregar.addEventListener("click", () => {
                 document.getElementById('listar').innerHTML = resListar;
                 document.getElementById('listarInverso').innerHTML = resListarInverso;
                 
-                operacion.innerHTML += `${chipAdd} Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
+                operacion.innerHTML += `
+                ${chipAdd} Se agregó un producto con el código ${codigo.value} y nombre "${nombre.value}" al inventario<hr>`;
                 operacion.scrollTop = operacion.scrollHeight;
                 codigo.style.border = "none";
                 cantidad.style.border = "none";
@@ -176,18 +176,12 @@ document.getElementById('buscar1').addEventListener("click", () => {
 btnEliminar.addEventListener("click", () => {
     const codigo = document.getElementById("buscar1").value;
     let divRes = document.getElementById("res");
+
     if (codigo != '') {
         if (inventario.primero != null) {
             let aux = new Producto(codigo, "", "", "");
             let res = inventario.eliminar(aux.codigo);
             if (res != false) {
-                let resListar = inventario.listado();
-                inventario.invertir();
-                let resListarInverso = inventario.listado();
-                inventario.invertir();
-
-                document.getElementById('listar').innerHTML = resListar;
-                document.getElementById('listarInverso').innerHTML = resListarInverso;
                 document.getElementById('title_search').innerHTML = "<h3 id='title_search'>Eliminado</h3>";
                 document.getElementById('title_search').style.display = "block";
                 divRes.innerHTML = `El producto con código ${codigo} ha sido eliminado`;
@@ -205,5 +199,4 @@ btnEliminar.addEventListener("click", () => {
         document.getElementById('title_search').style.display = "block";
         divRes.innerHTML = "Ingrese un código válido";
     }
-
 });
